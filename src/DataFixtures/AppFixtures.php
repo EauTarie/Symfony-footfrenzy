@@ -7,9 +7,15 @@ use App\Entity\Shop;
 use App\Entity\Team;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher) {
+        $this->hasher = $hasher;
+    }
     public function load(ObjectManager $manager): void
     {
         $userDataArray = [
@@ -158,7 +164,9 @@ class AppFixtures extends Fixture
             $user->setFirstname($userDataArray[$i]['firstname']);
             $user->setEmail($userDataArray[$i]['email']);
             $user->setUsername($userDataArray[$i]['username']);
-            $user->setPassword($userDataArray[$i]['password']);
+
+            $password = $this->hasher->hashPassword($user, $userDataArray[$i]['password']);
+            $user->setPassword($password);
             $user->setWorkingLocation($userDataArray[$i]['workingAt']);
 
             $user->setPointsNumber(rand(10,1000));
