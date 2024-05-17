@@ -114,9 +114,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: UserTeamCollection::class, mappedBy: 'id_user')]
     private Collection $userTeamCollections;
 
-    #[ORM\Column]
-    private bool $isVerified = false;
-
     public function __construct()
     {
         $this->bets = new ArrayCollection();

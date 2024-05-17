@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Username</th>
+                <th>Avatar</th>
+                <th>WorkingLocation</th>
+                <th>StudyingClass</th>
+                <th>Favorite_role</th>
+                <th>PointsNumber</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>LastLogged_at</th>
+                <th>Warned_at</th>
+                <th>Banned_at</th>
+                <th>Is_verified</th>
+                <th>Is_warned</th>
+                <th>Is_banned</th>
+                <th>Is_password_reset_requested</th>
+                <th>PasswordNumberRequest</th>
+                <th>WarnNumber</th>
+                <th>TotalPointsEarned</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.avatar }}</td>
+                <td>{{ user.workingLocation }}</td>
+                <td>{{ user.studyingClass }}</td>
+                <td>{{ user.favoriteRole }}</td>
+                <td>{{ user.pointsNumber }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.lastLoggedAt ? user.lastLoggedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.warnedAt ? user.warnedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.bannedAt ? user.bannedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isWarned ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isBanned ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isPasswordResetRequested ? 'Yes' : 'No' }}</td>
+                <td>{{ user.passwordNumberRequest }}</td>
+                <td>{{ user.warnNumber }}</td>
+                <td>{{ user.totalPointsEarned }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="25">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}

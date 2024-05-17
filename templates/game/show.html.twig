@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+    <h1>Game</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ game.id }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ game.createdAt ? game.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ game.updatedAt ? game.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Begin_at</th>
+                <td>{{ game.beginAt ? game.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Finished_at</th>
+                <td>{{ game.finishedAt ? game.finishedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Is_waiting</th>
+                <td>{{ game.isWaiting ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_pending</th>
+                <td>{{ game.isPending ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_twoVsTwo</th>
+                <td>{{ game.isTwoVsTwo ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>BlueTeamScore</th>
+                <td>{{ game.blueTeamScore }}</td>
+            </tr>
+            <tr>
+                <th>RedTeamScore</th>
+                <td>{{ game.redTeamScore }}</td>
+            </tr>
+            <tr>
+                <th>Winner</th>
+                <td>{{ game.winner }}</td>
+            </tr>
+            <tr>
+                <th>WinningReason</th>
+                <td>{{ game.winningReason }}</td>
+            </tr>
+            <tr>
+                <th>Invite_link</th>
+                <td>{{ game.inviteLink }}</td>
+            </tr>
+            <tr>
+                <th>Is_friendly</th>
+                <td>{{ game.isFriendly ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_game_index') }}">back to list</a>
+
+    <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
+
+    {{ include('game/_delete_form.html.twig') }}
+{% endblock %}
