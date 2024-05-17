@@ -21,7 +21,7 @@ class AppFixtures extends Fixture
                 'password' => 'eautarie',
                 'workingAt' => 'CCI',
                 'studyAt' => 'Devops',
-                'role' => ['["ROLE_ADMIN"]'],
+                'role' => ['ROLE_ADMIN'],
             ],
             [
                 'lastname' => 'Doe',
@@ -162,7 +162,7 @@ class AppFixtures extends Fixture
             $user->setWorkingLocation($userDataArray[$i]['workingAt']);
 
             $user->setPointsNumber(rand(10,1000));
-//            $user->setRole(["ROLE_ADMIN"]);
+            $user->setRoles(['ROLE_ADMIN']);
             $user->setCreatedAt(new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris')));
             $user->setVerified(rand(0,1));
             $user->setWarned(0);
